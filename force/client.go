@@ -20,31 +20,37 @@ const (
 
 // Get issues a GET to the specified path with the given params and put the
 // umarshalled (json) result in the third parameter
-func (forceApi *ForceApi) Get(path string, params url.Values, out interface{}, headers map[string]string) error {
-	return forceApi.request("GET", path, params, nil, out, headers)
+func (forceApi *ForceApi) Get(path string, params url.Values, out interface{}) error {
+	return forceApi.request("GET", path, params, nil, out, nil)
 }
 
 // Post issues a POST to the specified path with the given params and payload
 // and put the unmarshalled (json) result in the third parameter
-func (forceApi *ForceApi) Post(path string, params url.Values, payload, out interface{}, headers map[string]string) error {
-	return forceApi.request("POST", path, params, payload, out, headers)
+func (forceApi *ForceApi) Post(path string, params url.Values, payload, out interface{}) error {
+	return forceApi.request("POST", path, params, payload, out, nil)
 }
 
 // Put issues a PUT to the specified path with the given params and payload
 // and put the unmarshalled (json) result in the third parameter
-func (forceApi *ForceApi) Put(path string, params url.Values, payload, out interface{}, headers map[string]string) error {
+func (forceApi *ForceApi) Put(path string, params url.Values, payload, out interface{}) error {
+	return forceApi.request("PUT", path, params, payload, out, nil)
+}
+
+// PutWithHeaders issues a PUT to the specified path with the given params and payload
+// and put the unmarshalled (json) result in the third parameter
+func (forceApi *ForceApi) PutWithHeaders(path string, params url.Values, payload, out interface{}, headers map[string]string) error {
 	return forceApi.request("PUT", path, params, payload, out, headers)
 }
 
 // Patch issues a PATCH to the specified path with the given params and payload
 // and put the unmarshalled (json) result in the third parameter
-func (forceApi *ForceApi) Patch(path string, params url.Values, payload, out interface{}, headers map[string]string) error {
-	return forceApi.request("PATCH", path, params, payload, out, headers)
+func (forceApi *ForceApi) Patch(path string, params url.Values, payload, out interface{}) error {
+	return forceApi.request("PATCH", path, params, payload, out, nil)
 }
 
 // Delete issues a DELETE to the specified path with the given payload
-func (forceApi *ForceApi) Delete(path string, params url.Values, headers map[string]string) error {
-	return forceApi.request("DELETE", path, params, nil, nil, headers)
+func (forceApi *ForceApi) Delete(path string, params url.Values) error {
+	return forceApi.request("DELETE", path, params, nil, nil, nil)
 }
 
 func (forceApi *ForceApi) request(method, path string, params url.Values, payload, out interface{}, headers map[string]string) error {
