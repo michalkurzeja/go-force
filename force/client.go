@@ -136,7 +136,7 @@ func (forceApi *ForceApi) request(method, path string, params url.Values, payloa
 					return oauthErr
 				}
 
-				return forceApi.request(method, path, params, payload, out)
+				return forceApi.request(method, path, params, payload, out, headers)
 			}
 
 			return apiErrors
